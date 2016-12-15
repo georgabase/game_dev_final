@@ -11,7 +11,7 @@ namespace UnityStandardAssets._2D
         public float lookAheadReturnSpeed = 0.5f;
         public float lookAheadMoveThreshold = 0.1f;
 		public float yPosRestriction = -6;
-		public float xPosRestriction = -3;
+		public float xPosRestriction = -80f;
 		public float positivexRestriction = 650f;
 		public float positiveyPosRestriction = 8.5f;
 

@@ -142,6 +142,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	{
 
 		if (otherCollider.CompareTag ("enemyShot")) {
+			Debug.Log ("pineapples");
 			Player.GetComponent<PlayerHealth> ().DamagePlayer (25);
 		}
 
@@ -174,7 +175,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 			if (hasFlag) {
 				greenFlag.transform.position = greenHome.transform.position;
 				greenFlag.transform.parent = null;
-				GameMaster.GetComponent<GameMaster> ().score += 100;
+				GameMaster.GetComponent<GameMaster> ().score += 500;
 				hasFlag = false;
 			}
 		}

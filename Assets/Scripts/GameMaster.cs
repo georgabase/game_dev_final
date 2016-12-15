@@ -64,7 +64,7 @@ public class GameMaster : MonoBehaviour
 
 	void DisplayLCount2 ()
 	{
-		Rect coinIconRect = new Rect (10, 90, 32, 32);
+		Rect coinIconRect = new Rect (10, 320, 32, 32);
 		GUI.DrawTexture (coinIconRect, lIconTexture);                         
 
 		GUIStyle style = new GUIStyle ();
@@ -79,7 +79,7 @@ public class GameMaster : MonoBehaviour
 
 	void DisplayScoreCount2 ()
 	{
-		Rect coinIconRect = new Rect (10, 130, 32, 32);
+		Rect coinIconRect = new Rect (10, 360, 32, 32);
 		GUI.DrawTexture (coinIconRect, scoreIconTexture);                         
 
 		GUIStyle style = new GUIStyle ();

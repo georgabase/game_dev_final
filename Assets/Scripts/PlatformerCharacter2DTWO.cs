@@ -175,7 +175,7 @@ public class PlatformerCharacter2DTWO : MonoBehaviour
 			if (hasFlag2) {
 				orangeFlag.transform.position = orangeHome.transform.position;
 				orangeFlag.transform.parent = null;
-				GameMaster.GetComponent<GameMaster> ().score2 += 100;
+				GameMaster.GetComponent<GameMaster> ().score2 += 500;
 				hasFlag2 = false;
 			}
 		}
