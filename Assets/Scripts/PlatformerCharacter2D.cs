@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 //namespace UnityStandardAssets._2D
@@ -81,7 +81,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	}
 
 
-	
+
 	public void Move (float move, bool crouch, bool jump)
 	{
 		// If crouching, check to see if the character can stand up
@@ -111,8 +111,8 @@ public class PlatformerCharacter2D : MonoBehaviour
 				// ... flip the player.
 				Flip ();
 			}
-                    // Otherwise if the input is moving the player left and the player is facing right...
-                else if (move < 0 && m_FacingRight) {
+			// Otherwise if the input is moving the player left and the player is facing right...
+			else if (move < 0 && m_FacingRight) {
 				// ... flip the player.
 				Flip ();
 			}
@@ -141,8 +141,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	void OnTriggerEnter2D (Collider2D otherCollider)
 	{
 
-		if (otherCollider.CompareTag ("enemyShot")) {
-			Debug.Log ("pineapples");
+		if (otherCollider.CompareTag ("enemyShot") || otherCollider.CompareTag ("shot2")) {
 			Player.GetComponent<PlayerHealth> ().DamagePlayer (25);
 		}
 
@@ -154,7 +153,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 		if (otherCollider.CompareTag ("fin")) {
 			Debug.Log ("quit");
 			finish = true;
-			
+
 		}
 
 
@@ -175,7 +174,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 			if (hasFlag) {
 				greenFlag.transform.position = greenHome.transform.position;
 				greenFlag.transform.parent = null;
-				GameMaster.GetComponent<GameMaster> ().score += 500;
+				GameMaster.GetComponent<GameMaster> ().score += 100;
 				hasFlag = false;
 			}
 		}

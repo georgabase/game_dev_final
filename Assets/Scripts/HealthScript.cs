@@ -1,24 +1,13 @@
 ﻿ using UnityEngine;
 
-/// <summary>
-/// Handle hitpoints and damages
-/// </summary>
 public class HealthScript : MonoBehaviour
 {
-	/// <summary>
-	/// Total hitpoints
-	/// </summary>
+	
 	public int hp = 1;
 
-	/// <summary>
-	/// Enemy or player?
-	/// </summary>
 	public bool isEnemy = true;
 
-	/// <summary>
-	/// Inflicts damage and check if the object should be destroyed
-	/// </summary>
-	/// <param name="damageCount"></param>
+
 	public void Damage(int damageCount)
 	{
 		hp -= damageCount;
@@ -32,10 +21,6 @@ public class HealthScript : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D otherCollider)
 	{
-		// Is this a shot?
-
-	//	if (
-
 		ShotScript shot = otherCollider.gameObject.GetComponent<ShotScript>();
 		if (shot != null)
 		{
@@ -46,7 +31,7 @@ public class HealthScript : MonoBehaviour
 				{
 				Damage(shot.damage);
 				var playerScript = GameObject.FindWithTag ("GM").GetComponent<GameMaster> ();
-				playerScript.score += 50;
+				playerScript.score += 10;
 				// Destroy the shot
 				Destroy(shot.gameObject); // Remember to always target the game object, otherwise you will just remove the script
 				} 
@@ -55,9 +40,9 @@ public class HealthScript : MonoBehaviour
 				{
 						Damage(shot.damage);
 					var playerScript = GameObject.FindWithTag ("GM").GetComponent<GameMaster> ();
-					playerScript.score2 += 50;
+					playerScript.score2 += 10;
 					// Destroy the shot
-					Destroy(shot.gameObject); // Remember to always target the game object, otherwise you will just remove the script
+					Destroy(shot.gameObject); 
 				}
 			}
 		}
