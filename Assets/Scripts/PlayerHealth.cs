@@ -28,10 +28,12 @@ public class PlayerHealth : MonoBehaviour
 
 	void Update ()
 	{
+		
 		if (transform.position.y <= fallBoundary) {
+		greenFlag.transform.position = greenHome.transform.position;
+				greenFlag.transform.parent = null; 
 			DamagePlayer (9999999);
-			greenFlag.transform.position = greenHome.transform.position;
-			greenFlag.transform.parent = null;
+			Debug.Log ("PINEAPPLE");
 			Player.GetComponent<PlatformerCharacter2D> ().hasFlag = false;
 		}
 	}

@@ -131,6 +131,7 @@ public class GameMaster : MonoBehaviour
 		Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
 		GameObject clone = Instantiate (spawnPrefab, spawnPoint.position, spawnPoint.rotation) as GameObject;
 		Destroy (clone, 3f);
+		Debug.Log ("ggggg");
 	}
 
 	public IEnumerator RespawnPlayer2 ()

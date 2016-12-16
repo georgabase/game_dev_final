@@ -143,10 +143,14 @@ public class PlatformerCharacter2DTWO : MonoBehaviour
 	void OnTriggerEnter2D (Collider2D otherCollider)
 	{
 
-		if (otherCollider.CompareTag ("enemyShot") || otherCollider.CompareTag ("shot")) {
+		if (otherCollider.CompareTag ("enemyShot")) {
 			Player2.GetComponent<Player2Health> ().DamagePlayer2 (25);
 		}
 
+		if (otherCollider.CompareTag ("shot")) {
+			Player2.GetComponent<PlayerHealth> ().DamagePlayer (25);
+			GameMaster.GetComponent<GameMaster> ().score += 50;
+		}
 
 		if (otherCollider.CompareTag ("medPack")) {
 			Player2.GetComponent<Player2Health> ().player2Stats.Health += 25;
