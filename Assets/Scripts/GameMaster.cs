@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameMaster : MonoBehaviour
 	public Texture2D scoreIconTexture2;
 	public Texture2D lIconTexture2;
 	public int score2;
+	private bool isPause = false;
+
 
 
 	//CTF
@@ -20,7 +23,14 @@ public class GameMaster : MonoBehaviour
 	private static GameObject Player1;
 	private static GameObject Player2;
 
+	void Update () {
+		if( Input.GetKeyDown(KeyCode.Escape))
+		{
+			isPause = !isPause;
+	
+		}
 
+			}
 
 	void OnGUI ()
 	{
@@ -29,6 +39,26 @@ public class GameMaster : MonoBehaviour
 		DisplayScoreCount2 ();
 		DisplayLCount2 ();
 		DisplayRestartButton ();
+		if (isPause)
+			PauseMenu ();
+	}
+
+	void PauseMenu () {
+		if(GUILayout.Button("Main Menu")){
+			SceneManager.LoadScene (0);
+				}
+		if(GUILayout.Button("Restart")){
+			if (SceneManager.GetActiveScene().buildIndex == 1)			SceneManager.LoadScene (1);
+			if (SceneManager.GetActiveScene().buildIndex == 2)			SceneManager.LoadScene (2);
+
+		}
+		if(GUILayout.Button("Quit")){
+			#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying = false;
+			#else
+			Application.Quit();
+			#endif
+		}
 	}
 
 	void DisplayLCount ()
@@ -94,13 +124,20 @@ public class GameMaster : MonoBehaviour
 
 	void DisplayRestartButton ()
 	{
-		var playerScript = GameObject.FindWithTag ("Player").GetComponent<PlatformerCharacter2D> ();
-		if (playerScript.finish) {
+		
+		if (score >= 500) {
 			Rect buttonRect = new Rect (Screen.width * 0.35f, Screen.height * 0.45f, Screen.width * 0.30f, Screen.height * 0.1f);
-			if (GUI.Button (buttonRect, "YOU WON! Click to restart!")) {
+			if (GUI.Button (buttonRect, "ORANGE DUDE WON! Click to restart!")) {
 				Application.LoadLevel (Application.loadedLevelName);
 			}
-			;
+		}
+
+		if (score2 >= 500) {
+			Rect buttonRect2 = new Rect (Screen.width * 0.35f, Screen.height * 0.45f, Screen.width * 0.30f, Screen.height * 0.1f);
+			if (GUI.Button (buttonRect2, "GREEN DUDE WON! Click to restart!")) {
+				Application.LoadLevel (Application.loadedLevelName);
+			}
+
 		}
 	}
 
@@ -131,7 +168,7 @@ public class GameMaster : MonoBehaviour
 		Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
 		GameObject clone = Instantiate (spawnPrefab, spawnPoint.position, spawnPoint.rotation) as GameObject;
 		Destroy (clone, 3f);
-		Debug.Log ("ggggg");
+
 	}
 
 	public IEnumerator RespawnPlayer2 ()
