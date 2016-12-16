@@ -125,7 +125,7 @@ public class GameMaster : MonoBehaviour
 	void DisplayRestartButton ()
 	{
 		
-		if (score >= 500) {
+		if (score >= 500 ) {
 			Rect buttonRect = new Rect (Screen.width * 0.35f, Screen.height * 0.45f, Screen.width * 0.30f, Screen.height * 0.1f);
 			if (GUI.Button (buttonRect, "ORANGE DUDE WON! Click to restart!")) {
 				Application.LoadLevel (Application.loadedLevelName);
