@@ -30,8 +30,8 @@ public class PlayerHealth : MonoBehaviour
 	{
 		
 		if (transform.position.y <= fallBoundary) {
-		greenFlag.transform.position = greenHome.transform.position;
-				greenFlag.transform.parent = null; 
+			greenFlag.transform.position = greenHome.transform.position;
+			greenFlag.transform.parent = null; 
 			DamagePlayer (9999999);
 			Debug.Log ("PINEAPPLE");
 			Player.GetComponent<PlatformerCharacter2D> ().hasFlag = false;

@@ -29,9 +29,9 @@ public class Player2Health : MonoBehaviour
 	void Update ()
 	{
 		if (transform.position.y <= fallBoundary) {
-			DamagePlayer2 (9999999);
 			orangeFlag.transform.position = orangeHome.transform.position;
 			orangeFlag.transform.parent = null;
+			DamagePlayer2 (9999999);
 			Player2.GetComponent<PlatformerCharacter2DTWO> ().hasFlag2 = false;
 		}
 	}

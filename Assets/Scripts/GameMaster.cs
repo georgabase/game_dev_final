@@ -23,14 +23,17 @@ public class GameMaster : MonoBehaviour
 	private static GameObject Player1;
 	private static GameObject Player2;
 
-	void Update () {
-		if( Input.GetKeyDown(KeyCode.Escape))
-		{
+	void Update ()
+	{
+		if (Input.GetKeyDown (KeyCode.Escape)) {
 			isPause = !isPause;
+			if (isPause)
+				Time.timeScale = 0;
+			else
+				Time.timeScale = 1;
 	
 		}
-
-			}
+	}
 
 	void OnGUI ()
 	{
@@ -43,16 +46,22 @@ public class GameMaster : MonoBehaviour
 			PauseMenu ();
 	}
 
-	void PauseMenu () {
-		if(GUILayout.Button("Main Menu")){
+	void PauseMenu ()
+	{
+		if (GUILayout.Button ("Main Menu")) {
+			Time.timeScale = 1;
 			SceneManager.LoadScene (0);
-				}
-		if(GUILayout.Button("Restart")){
-			if (SceneManager.GetActiveScene().buildIndex == 1)			SceneManager.LoadScene (1);
-			if (SceneManager.GetActiveScene().buildIndex == 2)			SceneManager.LoadScene (2);
+		}
+		if (GUILayout.Button ("Restart")) {
+			Time.timeScale = 1;
+			if (SceneManager.GetActiveScene ().buildIndex == 1)
+				SceneManager.LoadScene (1);
+			if (SceneManager.GetActiveScene ().buildIndex == 2)
+				SceneManager.LoadScene (2);
 
 		}
-		if(GUILayout.Button("Quit")){
+		if (GUILayout.Button ("Quit")) {
+			Time.timeScale = 1;
 			#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 			#else
@@ -125,17 +134,31 @@ public class GameMaster : MonoBehaviour
 	void DisplayRestartButton ()
 	{
 		
-		if (score >= 500 ) {
-			Rect buttonRect = new Rect (Screen.width * 0.35f, Screen.height * 0.45f, Screen.width * 0.30f, Screen.height * 0.1f);
-			if (GUI.Button (buttonRect, "ORANGE DUDE WON! Click to restart!")) {
+		if (score >= 500) { 
+			Time.timeScale = 0;
+		//	Time.timeScale = 1;
+			if (GUILayout.Button ("ORANGE DUDE WON! Click to restart!")) {
+				Time.timeScale = 1;
 				Application.LoadLevel (Application.loadedLevelName);
+			}
+
+			else if (GUILayout.Button ("Leave the Game")) {
+				Time.timeScale = 1;
+				SceneManager.LoadScene ("MainMenu");
 			}
 		}
 
 		if (score2 >= 500) {
-			Rect buttonRect2 = new Rect (Screen.width * 0.35f, Screen.height * 0.45f, Screen.width * 0.30f, Screen.height * 0.1f);
-			if (GUI.Button (buttonRect2, "GREEN DUDE WON! Click to restart!")) {
+			Time.timeScale = 0;
+			//Time.timeScale = 1;
+			if (GUILayout.Button ("GREEN DUDE WON! Click to restart!")) {
+				Time.timeScale = 1;
 				Application.LoadLevel (Application.loadedLevelName);
+			}
+
+			if (GUILayout.Button ("Leave the Game")) {
+				Time.timeScale = 1;
+				SceneManager.LoadScene ("MainMenu");
 			}
 
 		}
