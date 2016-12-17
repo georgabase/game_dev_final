@@ -15,6 +15,11 @@ public class GameMaster : MonoBehaviour
 	public int score2;
 	private bool isPause = false;
 
+	private int bo3_score;
+	private int bo3_score2;
+	private bool score_bool;
+	private bool score_bool2;
+
 
 
 	//CTF
@@ -22,6 +27,9 @@ public class GameMaster : MonoBehaviour
 	private static GameObject greenFlag;
 	private static GameObject Player1;
 	private static GameObject Player2;
+
+
+
 
 	void Update ()
 	{
@@ -33,6 +41,8 @@ public class GameMaster : MonoBehaviour
 				Time.timeScale = 1;
 	
 		}
+
+
 	}
 
 	void OnGUI ()
@@ -134,33 +144,75 @@ public class GameMaster : MonoBehaviour
 	void DisplayRestartButton ()
 	{
 		
+
 		if (score >= 500) { 
 			Time.timeScale = 0;
-		//	Time.timeScale = 1;
-			if (GUILayout.Button ("ORANGE DUDE WON! Click to restart!")) {
-				Time.timeScale = 1;
-				Application.LoadLevel (Application.loadedLevelName);
+			if (!score_bool) {
+				bo3_score++;
+				score_bool = true;
 			}
+			if (bo3_score == 2) {
+				if (GUILayout.Button ("Orange dude won with a score " + bo3_score.ToString () + " : " + bo3_score2.ToString ())) {
+					Time.timeScale = 1;
+					SceneManager.LoadScene ("MainMenu");
+				}
+				
+			} else {
+				
+				if (GUILayout.Button ("ORANGE DUDE WON THE ROUND! Score: " + bo3_score.ToString () + " : " + bo3_score2.ToString ())) {
+					Time.timeScale = 1;
+					if (SceneManager.GetActiveScene ().buildIndex == 1) {
+						SceneManager.LoadScene ("CTF2");
 
-			else if (GUILayout.Button ("Leave the Game")) {
-				Time.timeScale = 1;
-				SceneManager.LoadScene ("MainMenu");
+					}
+					if (SceneManager.GetActiveScene ().buildIndex == 3) {
+						SceneManager.LoadScene ("CTF3");
+
+					}
+					if (SceneManager.GetActiveScene ().buildIndex == 4) {
+						SceneManager.LoadScene ("MainMenu");
+
+					}
+				} else if (GUILayout.Button ("Leave the Game")) {
+					Time.timeScale = 1;
+					SceneManager.LoadScene ("MainMenu");
+				}
 			}
 		}
 
-		if (score2 >= 500) {
+		if (score2 >= 500) { 
 			Time.timeScale = 0;
-			//Time.timeScale = 1;
-			if (GUILayout.Button ("GREEN DUDE WON! Click to restart!")) {
-				Time.timeScale = 1;
-				Application.LoadLevel (Application.loadedLevelName);
+			if (!score_bool) {
+				bo3_score2++;
+				score_bool2 = true;
 			}
+			if (bo3_score2 == 2) {
+				if (GUILayout.Button ("Green dude won with a score " + bo3_score.ToString () + " : " + bo3_score2.ToString ())) {
+					Time.timeScale = 1;
+					SceneManager.LoadScene ("MainMenu");
+				}
 
-			if (GUILayout.Button ("Leave the Game")) {
-				Time.timeScale = 1;
-				SceneManager.LoadScene ("MainMenu");
+			} else {
+
+				if (GUILayout.Button ("GREEN DUDE WON THE ROUND! Score: " + bo3_score.ToString () + " : " + bo3_score2.ToString ())) {
+					Time.timeScale = 1;
+					if (SceneManager.GetActiveScene ().buildIndex == 1) {
+						SceneManager.LoadScene ("CTF2");
+
+					}
+					if (SceneManager.GetActiveScene ().buildIndex == 3) {
+						SceneManager.LoadScene ("CTF3");
+
+					}
+					if (SceneManager.GetActiveScene ().buildIndex == 4) {
+						SceneManager.LoadScene ("MainMenu");
+
+					}
+				} else if (GUILayout.Button ("Leave the Game")) {
+					Time.timeScale = 1;
+					SceneManager.LoadScene ("MainMenu");
+				}
 			}
-
 		}
 	}
 
@@ -173,6 +225,9 @@ public class GameMaster : MonoBehaviour
 			greenFlag = GameObject.FindWithTag ("greenFlag");
 			Player1 = GameObject.FindWithTag ("Player");
 			Player2 = GameObject.FindWithTag ("Player2");
+			score_bool = false;
+			SceneManager.activeSceneChanged += OnSceneWasSwitched;
+
 		}
 	}
 
@@ -219,5 +274,15 @@ public class GameMaster : MonoBehaviour
 		gm.StartCoroutine (gm.RespawnPlayer2 ());
 		Player2.GetComponent<PlatformerCharacter2DTWO> ().hasFlag2 = false;
 	}
+
+
+	void OnSceneWasSwitched(Scene previousScene, Scene newScene)
+	{
+		score_bool = false;
+		score_bool2 = false;
+		//do stuff when a scene is changed
+	}
+
+
 
 }
