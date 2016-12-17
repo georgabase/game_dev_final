@@ -149,7 +149,7 @@ public class PlatformerCharacter2DTWO : MonoBehaviour
 
 		if (otherCollider.CompareTag ("shot")) {
 			Player2.GetComponent<Player2Health> ().DamagePlayer2 (25);
-			GameMaster.GetComponent<GameMaster> ().score += 50;
+			GameMaster.GetComponent<GameMaster> ().score += 35;
 		}
 
 		if (otherCollider.CompareTag ("medPack")) {

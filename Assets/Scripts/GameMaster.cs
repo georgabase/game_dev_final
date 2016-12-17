@@ -54,10 +54,10 @@ public class GameMaster : MonoBehaviour
 		}
 		if (GUILayout.Button ("Restart")) {
 			Time.timeScale = 1;
-			if (SceneManager.GetActiveScene ().buildIndex == 1)
-				SceneManager.LoadScene (1);
-			if (SceneManager.GetActiveScene ().buildIndex == 2)
-				SceneManager.LoadScene (2);
+			//if (SceneManager.GetActiveScene ().buildIndex == 1)
+				SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+			//if (SceneManager.GetActiveScene ().buildIndex == 2)
+		//		SceneManager.LoadScene (2);
 
 		}
 		if (GUILayout.Button ("Quit")) {

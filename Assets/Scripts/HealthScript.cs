@@ -31,7 +31,7 @@ public class HealthScript : MonoBehaviour
 				{
 				Damage(shot.damage);
 				var playerScript = GameObject.FindWithTag ("GM").GetComponent<GameMaster> ();
-				playerScript.score += 10;
+				playerScript.score += 5;
 				// Destroy the shot
 				Destroy(shot.gameObject); // Remember to always target the game object, otherwise you will just remove the script
 				} 
@@ -40,7 +40,7 @@ public class HealthScript : MonoBehaviour
 				{
 						Damage(shot.damage);
 					var playerScript = GameObject.FindWithTag ("GM").GetComponent<GameMaster> ();
-					playerScript.score2 += 10;
+					playerScript.score2 += 5;
 					// Destroy the shot
 					Destroy(shot.gameObject); 
 				}
