@@ -148,7 +148,7 @@ public class GameMaster : MonoBehaviour
 		if (score >= 500) { 
 			Time.timeScale = 0;
 			if (!score_bool) {
-				bo3_score++;
+			//	bo3_score++;
 				score_bool = true;
 			}
 			if (bo3_score == 2) {
@@ -183,7 +183,7 @@ public class GameMaster : MonoBehaviour
 		if (score2 >= 500) { 
 			Time.timeScale = 0;
 			if (!score_bool) {
-				bo3_score2++;
+				//bo3_score2++;
 				score_bool2 = true;
 			}
 			if (bo3_score2 == 2) {
@@ -281,6 +281,10 @@ public class GameMaster : MonoBehaviour
 		score_bool = false;
 		score_bool2 = false;
 		//do stuff when a scene is changed
+
+		//for some reason this doesnt work and because of this i can
+		//not assign values to variables when the level changes. there is no other way to 
+		//do it apparently and this one doesnt work for me :\
 	}
 
 
